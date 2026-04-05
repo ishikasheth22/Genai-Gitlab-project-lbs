@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "question": "When should a handbook issue be escalated?",
+    "expected": "Escalate only for broken default branch, broken infrastructure, or time-sensitive handbook updates.",
+    "actual": "Issues should only be escalated if it relates to:\n\n1. Default branch being broken\n1. Broken infrastructure\n1. Time sensitive updates to the handbook where there is an issue in making the update.",
+    "sources": [
+      "**about_escalation.md** | `about_escalation.md` | chunk 1",
+      "**about_escalation.md** | `about_escalation.md` | chunk 3",
+      "**about_handbook-usage.md** | `about_handbook-usage.md` | chunk 10",
+      "**about_handbook-usage.md** | `about_handbook-usage.md` | chunk 9",
+      "**about_maintenance.md** | `about_maintenance.md` | chunk 9"
+    ],
+    "judge_score": 1,
+    "judge_reason": "The chatbot's answer accurately reflects all the key points of the expected answer, covering broken default branch, broken infrastructure, and time-sensitive handbook updates. The phrasing is slightly different but conveys the same meaning.",
+    "model_used": "gemini/gemma-3-27b-it"
+  },
+  {
+    "id": 2,
+    "question": "What Slack channel should work-stopping handbook issues be reported in?",
+    "expected": "Work-stopping issues should be reported in the #handbook-escalation channel.",
+    "actual": "`#handbook-escalation` in Slack.",
+    "sources": [
+      "**about_escalation.md** | `about_escalation.md` | chunk 2",
+      "**about_escalation.md** | `about_escalation.md` | chunk 9",
+      "**business-technology_tech-stack-applications.md** | `business-technology_tech-stack-applications.md` | chunk 28",
+      "**communication_chat.md** | `communication_chat.md` | chunk 34",
+      "**company_culture_all-remote_asynchronous.md** | `company_culture_all-remote_asynchronous.md` | chunk 43"
+    ],
+    "judge_score": 1,
+    "judge_reason": "The chatbot directly provides the correct Slack channel name for reporting work-stopping handbook issues, matching the expected answer's key point.",
+    "model_used": "gemini/gemma-3-27b-it"
+  },
+  {
+    "id": 3,
+    "question": "What is the purpose of GitLab's Business Continuity Plan?",
+    "expected": "It creates a system of prevention and recovery from threats, ensuring personnel and assets can function during a business disruption.",
+    "actual": "The Business Continuity Plan is the process involved in creating a system of prevention and recovery from potential threats to GitLab. The plan ensures that personnel and assets are protected and are able to function quickly in the event of a business disruption.",
+    "sources": [
+      "**alliances_integration-instructions.md** | `alliances_integration-instructions.md` | chunk 0",
+      "**business-technology_entapps-documentation_policies_gitlab-business-continuity-plan.md** | `business-technology_entapps-documentation_policies_gitlab-business-continuity-plan.md` | chunk 1",
+      "**business-technology_entapps-documentation_policies_gitlab-business-continuity-plan.md** | `business-technology_entapps-documentation_policies_gitlab-business-continuity-plan.md` | chunk 5",
+      "**communication_confidentiality-levels.md** | `communication_confidentiality-levels.md` | chunk 9",
+      "**company_being-a-public-company.md** | `company_being-a-public-company.md` | chunk 1"
+    ],
+    "judge_score": 1,
+    "judge_reason": "The chatbot's answer accurately reflects the purpose outlined in the expected answer, including prevention, recovery, personnel/asset functionality during disruption. It's a slightly more verbose but still correct explanation.",
+    "model_used": "gemini/gemma-3-27b-it"
+  },
+  {
+    "id": 4,
+    "question": "How does GitLab's remote structure help with business continuity?",
+    "expected": "The remote structure means local failures do not easily disrupt the company, and the Incident Response Process represents the bulk of the BCP.",
+    "actual": "GitLab, by its remote-only nature, is not easily affected by typical causes of business disruption, such as local failures of equipment, power supplies, telecommunications, social unrest, terrorist attacks, fire, or natural disasters. System data from the Business Impact Analysis may be leveraged as part of business continuity planning and testing.",
+    "sources": [
+      "**business-technology_entapps-documentation_policies_gitlab-business-continuity-plan.md** | `business-technology_entapps-documentation_policies_gitlab-business-continuity-plan.md` | chunk 2",
+      "**company_culture_all-remote_asynchronous.md** | `company_culture_all-remote_asynchronous.md` | chunk 69",
+      "**company_culture_all-remote_building-culture.md** | `company_culture_all-remote_building-culture.md` | chunk 24",
+      "**company_culture_all-remote_building-culture.md** | `company_culture_all-remote_building-culture.md` | chunk 30",
+      "**company_culture_all-remote_getting-started.md** | `company_culture_all-remote_getting-started.md` | chunk 8"
+    ],
+    "judge_score": 1,
+    "judge_reason": "The chatbot's answer accurately reflects the core idea that GitLab's remote structure inherently provides business continuity by mitigating the impact of local disruptions. It expands on the 'local failures' point with specific examples. While it doesn't *explicitly* mention the Incident Response Process, it still addresses the core concept of how the remote structure aids BCP.",
+    "model_used": "gemini/gemma-3-27b-it"
+  },
+  {
+    "id": 5,
+    "question": "How are Tech Stack updates submitted at GitLab?",
+    "expected": "Tech Stack updates are submitted through the HelpLab Tech Stack Update form.",
+    "actual": "All Tech Stack changes must now be submitted using the **[Tech Stack Update Form](https://helplab.gitlab.systems/esc?id=sc_cat_item&sys_id=7eee5c19ff25e6503691fe34fc4fd9ab)** in HelpLab.",
+    "sources": [
+      "**alliances_integration-instructions.md** | `alliances_integration-instructions.md` | chunk 0",
+      "**business-technology_tech-stack-applications.md** | `business-technology_tech-stack-applications.md` | chunk 0",
+      "**business-technology_tech-stack-applications.md** | `business-technology_tech-stack-applications.md` | chunk 10",
+      "**business-technology_tech-stack-applications.md** | `business-technology_tech-stack-applications.md` | chunk 4",
+      "**business-technology_tech-stack-applications.md** | `business-technology_tech-stack-applications.md` | chunk 9"
+    ],
+    "judge_score": 1,
+    "judge_reason": "The chatbot accurately identifies the method for submitting Tech Stack updates (the HelpLab Tech Stack Update form) and even provides a direct link, making it a complete and correct answer.",
+    "model_used": "gemini/gemma-3-27b-it"
+  },
+  {
+    "id": 6,
+    "question": "How do you use sed and find together to bulk replace strings across handbook files?",
+    "expected": "Use find to match files and exec sed with the -i flag to replace strings inline across all matched files.",
+    "actual": "You can combine `find`, `exec`, and `sed` to perform an inline replacement of a pattern/string in multiple files. For example:\n\n```shell\nfind source/handbook -type f -exec sh -c 'gsed -i \"s,<searchtext>,<replacementtext>,g\" \"{}\"' \\;\n```\n\nThis command recursively searches the `source/handbook` directory for files and executes `gsed` on each file to replace all instances of `<searchtext>` with `<replacementtext>`.",
+    "sources": [
+      "**about_editing-handbook_practical-handbook-edits.md** | `about_editing-handbook_practical-handbook-edits.md` | chunk 11",
+      "**about_editing-handbook_practical-handbook-edits.md** | `about_editing-handbook_practical-handbook-edits.md` | chunk 15",
+      "**about_editing-handbook_practical-handbook-edits.md** | `about_editing-handbook_practical-handbook-edits.md` | chunk 3",
+      "**about_editing-handbook_practical-handbook-edits.md** | `about_editing-handbook_practical-handbook-edits.md` | chunk 4",
+      "**about_editing-handbook_practical-handbook-edits.md** | `about_editing-handbook_practical-handbook-edits.md` | chunk 9"
+    ],
+    "judge_score": 1,
+    "judge_reason": "The answer correctly identifies the use of `find`, `exec`, and `sed` (specifically `gsed` which is a GNU sed variant often used for in-place editing) with the `-i` flag (implied by using `gsed` for inline replacement) to achieve bulk string replacement across files. It provides a functional example command.",
+    "model_used": "gemini/gemma-3-27b-it"
+  },
+  {
+    "id": 7,
+    "question": "Which finance systems require SOX compliance procedures for access requests?",
+    "expected": "Systems include Adaptive Insights, Avalara, Coupa, Navan, NetSuite, Stripe, Zuora Billing, and Zuora Revenue.",
+    "actual": "- Adaptive Insights\n- Avalara\n- Coupa\n- Navan\n- NetSuite\n- Stripe\n- Zuora Billing\n- Zuora Revenue",
+    "sources": [
+      "**business-technology_enterprise-applications_entapps-crm_finsys-access-requests.md** | `business-technology_enterprise-applications_entapps-crm_finsys-access-requests.md` | chunk 0",
+      "**business-technology_enterprise-applications_entapps-crm_finsys-access-requests.md** | `business-technology_enterprise-applications_entapps-crm_finsys-access-requests.md` | chunk 1",
+      "**business-technology_enterprise-applications_guides_product-catalog.md** | `business-technology_enterprise-applications_guides_product-catalog.md` | chunk 1",
+      "**business-technology_readmes_derek.isla.md** | `business-technology_readmes_derek.isla.md` | chunk 5",
+      "**business-technology_tech-stack-applications.md** | `business-technology_tech-stack-applications.md` | chunk 26"
+    ],
+    "judge_score": 1,
+    "judge_reason": "The chatbot's answer perfectly matches the expected key points, listing all the finance systems requiring SOX compliance procedures for access requests.",
+    "model_used": "gemini/gemma-3-27b-it"
+  },
+  {
+    "id": 8,
+    "question": "What is GitLab's recipe for chocolate cake?",
+    "expected": "NOT IN CONTEXT",
+    "actual": "I could not find that information in the provided GitLab Handbook subset.",
+    "sources": [
+      "**about_handbook-usage.md** | `about_handbook-usage.md` | chunk 0",
+      "**about_handbook-usage.md** | `about_handbook-usage.md` | chunk 43",
+      "**about_handbook-usage.md** | `about_handbook-usage.md` | chunk 50",
+      "**business-technology_readmes_marc-disabatino.md** | `business-technology_readmes_marc-disabatino.md` | chunk 4",
+      "**communication_chat.md** | `communication_chat.md` | chunk 0"
+    ],
+    "judge_score": 1,
+    "judge_reason": "The chatbot correctly stated it could not find the requested information within the provided context, adhering to the negative example's requirement.",
+    "model_used": "gemini/gemma-3-27b-it"
+  },
+  {
+    "id": 9,
+    "question": "What is the capital city of France according to the GitLab handbook?",
+    "expected": "NOT IN CONTEXT",
+    "actual": "I could not find that information in the provided GitLab Handbook subset.",
+    "sources": [
+      "**about_handbook-usage.md** | `about_handbook-usage.md` | chunk 0",
+      "**about_handbook-usage.md** | `about_handbook-usage.md` | chunk 15",
+      "**about_handbook-usage.md** | `about_handbook-usage.md` | chunk 43",
+      "**communication_confidentiality-levels.md** | `communication_confidentiality-levels.md` | chunk 1",
+      "**company_being-a-public-company.md** | `company_being-a-public-company.md` | chunk 3"
+    ],
+    "judge_score": 1,
+    "judge_reason": "The chatbot correctly stated it could not find the information within the provided context, as the capital of France is not mentioned in the GitLab Handbook.",
+    "model_used": "gemini/gemma-3-27b-it"
+  }
+]

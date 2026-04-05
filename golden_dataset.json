@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "question": "When should a handbook issue be escalated?",
+        "expected_answer": "Escalate only for broken default branch, broken infrastructure, or time-sensitive handbook updates.",
+        "is_negative": "False"
+    },
+    {
+        "id": 2,
+        "question": "What Slack channel should work-stopping handbook issues be reported in?",
+        "expected_answer": "Work-stopping issues should be reported in the #handbook-escalation channel.",
+        "is_negative": "False"
+    },
+    {
+        "id": 3,
+        "question": "What is the purpose of GitLab's Business Continuity Plan?",
+        "expected_answer": "It creates a system of prevention and recovery from threats, ensuring personnel and assets can function during a business disruption.",
+        "is_negative": "False"
+    },
+    {
+        "id": 4,
+        "question": "How does GitLab's remote structure help with business continuity?",
+        "expected_answer": "The remote structure means local failures do not easily disrupt the company, and the Incident Response Process represents the bulk of the BCP.",
+        "is_negative": "False"
+    },
+    {
+        "id": 5,
+        "question": "How are Tech Stack updates submitted at GitLab?",
+        "expected_answer": "Tech Stack updates are submitted through the HelpLab Tech Stack Update form.",
+        "is_negative": "False"
+    },
+    {
+        "id": 6,
+        "question": "How do you use sed and find together to bulk replace strings across handbook files?",
+        "expected_answer": "Use find to match files and exec sed with the -i flag to replace strings inline across all matched files.",
+        "is_negative": "False"
+    },
+    {
+        "id": 7,
+        "question": "Which finance systems require SOX compliance procedures for access requests?",
+        "expected_answer": "Systems include Adaptive Insights, Avalara, Coupa, Navan, NetSuite, Stripe, Zuora Billing, and Zuora Revenue.",
+        "is_negative": "False"
+    },
+    {
+        "id": 8,
+        "question": "What is GitLab's recipe for chocolate cake?",
+        "expected_answer": "NOT IN CONTEXT",
+        "is_negative": "True"
+    },
+    {
+        "id": 9,
+        "question": "What is the capital city of France according to the GitLab handbook?",
+        "expected_answer": "NOT IN CONTEXT",
+        "is_negative": "True"
+    }
+]
