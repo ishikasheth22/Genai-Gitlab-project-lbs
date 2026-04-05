@@ -77,3 +77,4 @@ The app tries these models in order until one succeeds:
 # Genai-Gitlab-project
 # Genai-Gitlab-project
 # Genai-Gitlab-project-lbs
+# Genai-Gitlab-project-lbs
