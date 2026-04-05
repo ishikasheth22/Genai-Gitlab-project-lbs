@@ -262,15 +262,28 @@ def get_chroma_client():
     try:
         import chromadb
         import shutil
-        # Wipe any stale DB files to avoid version conflicts
-        if Path(CHROMA_DB_FOLDER).exists():
-            shutil.rmtree(CHROMA_DB_FOLDER)
-        Path(CHROMA_DB_FOLDER).mkdir(exist_ok=True)
-        client = chromadb.PersistentClient(path=CHROMA_DB_FOLDER)
+        import tempfile
+        
+        # Use a temp directory to avoid any stale state
+        db_path = Path(CHROMA_DB_FOLDER)
+        if db_path.exists():
+            shutil.rmtree(str(db_path))
+        db_path.mkdir(parents=True, exist_ok=True)
+        
+        client = chromadb.Client(chromadb.config.Settings(
+            chroma_db_impl="duckdb+parquet",
+            persist_directory=CHROMA_DB_FOLDER,
+            anonymized_telemetry=False
+        ))
         return client
-    except Exception as e:
-        st.error(f"ChromaDB client error: {e}")
-        return None
+    except Exception:
+        try:
+            import chromadb
+            client = chromadb.PersistentClient(path=CHROMA_DB_FOLDER)
+            return client
+        except Exception as e:
+            st.error(f"ChromaDB client error: {e}")
+            return None
 
 
 @st.cache_resource(show_spinner=False)

@@ -1,5 +1,5 @@
 streamlit>=1.35.0
-chromadb==0.5.23
-protobuf>=4.0.0
+chromadb==0.4.24
+protobuf==3.20.3
 litellm>=1.30.0
 python-dotenv>=1.0.0
