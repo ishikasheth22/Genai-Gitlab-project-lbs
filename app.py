@@ -261,29 +261,44 @@ class BM25:
 def get_chroma_client():
     try:
         import chromadb
-        import shutil
+        from chromadb.config import Settings
 
         db_path = Path(CHROMA_DB_FOLDER)
-        if db_path.exists():
-            shutil.rmtree(str(db_path))
         db_path.mkdir(parents=True, exist_ok=True)
 
-        client = chromadb.PersistentClient(path=CHROMA_DB_FOLDER)
-        return client
+        # Primary mode: persistent local DB
+        try:
+            return chromadb.PersistentClient(path=str(db_path))
+        except Exception as persistent_error:
+            # Streamlit Cloud sometimes restores legacy Chroma artifacts/configs
+            # that can break persistent startup (e.g. chroma_db_impl metadata).
+            # Fallback to in-memory so app still works and can rebuild index.
+            st.warning(
+                "Persistent ChromaDB failed; falling back to in-memory mode. "
+                f"Reason: {persistent_error}"
+            )
+            return chromadb.Client(Settings(anonymized_telemetry=False))
     except Exception as e:
         st.error(f"ChromaDB client error: {e}")
         return None
 
 
 @st.cache_resource(show_spinner=False)
-def get_or_build_collection(_client):
-    import chromadb
-    
-    # Always delete and rebuild to avoid version conflicts
-    try:
-        _client.delete_collection(name=COLLECTION_NAME)
-    except Exception:
-        pass
+def get_or_build_collection(_client, force_rebuild: bool = False):
+    # Reuse existing collection unless explicitly rebuilding
+    collection = None
+    if not force_rebuild:
+        try:
+            collection = _client.get_collection(name=COLLECTION_NAME)
+            return collection, collection.count(), False
+        except Exception:
+            collection = None
+
+    if force_rebuild:
+        try:
+            _client.delete_collection(name=COLLECTION_NAME)
+        except Exception:
+            pass
 
     collection = _client.get_or_create_collection(name=COLLECTION_NAME)
 
@@ -674,6 +689,7 @@ def sidebar_config() -> tuple[str, str, float, int]:
             # Clear cached resources
             get_or_build_collection.clear()
             build_bm25_index.clear()
+            st.session_state.force_rebuild = True
             st.rerun()
 
         st.markdown("---")
@@ -940,9 +956,11 @@ def main():
     client = get_chroma_client()
     collection, doc_count, was_built = None, 0, False
 
+    force_rebuild = bool(st.session_state.pop("force_rebuild", False))
+
     if client:
         with st.spinner("Loading ChromaDB collection…"):
-            collection, doc_count, was_built = get_or_build_collection(client)
+            collection, doc_count, was_built = get_or_build_collection(client, force_rebuild=force_rebuild)
 
         if was_built:
             st.success(f"✅ Built new index with **{doc_count}** chunks.")
