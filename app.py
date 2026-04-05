@@ -261,7 +261,11 @@ class BM25:
 def get_chroma_client():
     try:
         import chromadb
-        client = chromadb.PersistentClient(path=CHROMA_DB_FOLDER)
+        from chromadb.config import Settings
+        client = chromadb.PersistentClient(
+            path=CHROMA_DB_FOLDER,
+            settings=Settings(anonymized_telemetry=False)
+        )
         return client
     except Exception as e:
         st.error(f"ChromaDB client error: {e}")
@@ -270,23 +274,19 @@ def get_chroma_client():
 
 @st.cache_resource(show_spinner=False)
 def get_or_build_collection(_client):
-    """Load existing collection or build a new one from handbook files."""
     import chromadb
-
+    
+    # Always delete and rebuild to avoid version conflicts
     try:
-        collection = _client.get_collection(name=COLLECTION_NAME)
-        count = collection.count()
-        if count > 0:
-            return collection, count, False  # (collection, count, was_built)
+        _client.delete_collection(name=COLLECTION_NAME)
     except Exception:
         pass
 
-    # Need to build
+    collection = _client.get_or_create_collection(name=COLLECTION_NAME)
+
     handbook_path = Path(HANDBOOK_FOLDER)
     if not handbook_path.exists():
         return None, 0, False
-
-    collection = _client.get_or_create_collection(name=COLLECTION_NAME)
 
     md_files = sorted(handbook_path.rglob("*.md"))
     if not md_files:
@@ -326,7 +326,6 @@ def get_or_build_collection(_client):
         )
 
     return collection, len(documents), True
-
 
 @st.cache_resource(show_spinner=False)
 def build_bm25_index(_collection) -> Optional[BM25]:
