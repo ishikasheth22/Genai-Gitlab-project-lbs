@@ -261,11 +261,12 @@ class BM25:
 def get_chroma_client():
     try:
         import chromadb
-        from chromadb.config import Settings
-        client = chromadb.PersistentClient(
-            path=CHROMA_DB_FOLDER,
-            settings=Settings(anonymized_telemetry=False)
-        )
+        import shutil
+        # Wipe any stale DB files to avoid version conflicts
+        if Path(CHROMA_DB_FOLDER).exists():
+            shutil.rmtree(CHROMA_DB_FOLDER)
+        Path(CHROMA_DB_FOLDER).mkdir(exist_ok=True)
+        client = chromadb.PersistentClient(path=CHROMA_DB_FOLDER)
         return client
     except Exception as e:
         st.error(f"ChromaDB client error: {e}")
